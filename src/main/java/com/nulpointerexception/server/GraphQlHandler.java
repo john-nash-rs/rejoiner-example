@@ -36,7 +36,7 @@ public class GraphQlHandler extends AbstractHandler {
             new TypeToken<Map<String, Object>>() {};
 
     private static final GraphQLSchema SCHEMA =
-            Guice.createInjector(new SchemaProviderModule(), new GRPCAppClientModule(), new GRPCAppSchemaModule())
+            Guice.createInjector(new SchemaProviderModule(), new GRPCAppClientModule(), new GRPCAppSchemaModule(), new BookingNexusDemoSchemaModule())
                     .getInstance(Key.get(GraphQLSchema.class, Schema.class));
 
     Instrumentation instrumentation =

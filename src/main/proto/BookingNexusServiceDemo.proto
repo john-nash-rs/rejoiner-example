@@ -1,0 +1,79 @@
+syntax = "proto3";
+option java_generic_services = true;
+option java_package = "com.nulpointerexception.server.proto";
+
+package proto;
+
+service SignUpService {
+    rpc signUp(UserData) returns (SignUpResponse){}
+    rpc searchBookings(BookingSearch) returns (BookingResponse){}
+    rpc findMachine(MachineRequest) returns (Machine){}
+    rpc findCrop(CropRequest) returns (Crop){}
+    rpc findUser(UserRequest) returns (User){}
+
+}
+
+message UserData {
+    string username = 1;
+    int32 password = 2;
+}
+
+message SignUpResponse {
+    string result = 3;
+}
+
+message BookingResponse{
+    repeated Booking bookings = 4;
+}
+
+message Booking {
+    int32 bookingId = 5;
+    int32 actorId = 6;
+    string ActorType = 7;
+    int32 createdById = 8;
+    int32 updatedById = 9;
+    int32 cropId = 24;
+    int32 machineId = 25;
+}
+
+message User{
+    string firstName = 10;
+    string lastName = 11;
+}
+
+message Crop{
+    string imageName = 12;
+    string name = 13;
+    Media media = 14;
+    int32 cropId = 23;
+}
+
+message Media{
+    string url = 15;
+    string path = 16;
+}
+
+message Machine{
+    string machineId = 17;
+    string location = 18;
+}
+
+message BookingSearch {
+    int32 farmCropId = 19;
+    int32 actorId = 20;
+    string ActorType = 21;
+}
+
+message MachineRequest{
+    string machineId = 24;
+}
+
+message CropRequest{
+    string cropId = 25;
+}
+
+message UserRequest{
+    string userId = 27;
+}
+
+
