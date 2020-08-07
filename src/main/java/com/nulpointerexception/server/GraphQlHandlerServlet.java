@@ -21,6 +21,7 @@ import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -29,7 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class GraphQlHandler extends AbstractHandler {
+public class GraphQlHandlerServlet extends HttpServlet {
 
     private static final Gson GSON = new GsonBuilder().serializeNulls().create();
     private static final TypeToken<Map<String, Object>> MAP_TYPE_TOKEN =
@@ -45,13 +46,9 @@ public class GraphQlHandler extends AbstractHandler {
                             GuavaListenableFutureSupport.listenableFutureInstrumentation()));
     GraphQL GRAPHQL = GraphQL.newGraphQL(SCHEMA).instrumentation(instrumentation).build();
 
-    public void handle(String url, Request request, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
-//        httpServletResponse.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-//        httpServletResponse.addHeader("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
-//        httpServletResponse.addHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+    public void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
 
-        if ("/graphqli".equals(url)) {
-            request.setHandled(true);
+        if (true) {
             Map<String, Object> json = readJson(httpServletRequest);
             String query = (String) json.get("query");
             if (query == null) {

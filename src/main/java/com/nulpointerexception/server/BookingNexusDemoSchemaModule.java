@@ -24,13 +24,14 @@ public class BookingNexusDemoSchemaModule extends SchemaModule {
 
     @Query("machines")
     @SchemaModification(addField = "machines", onType = BookingNexusServiceDemo.Booking.class)
-    ListenableFuture<BookingNexusServiceDemo.Machine> machines(BookingNexusServiceDemo.Booking booking) throws InterruptedException {
+    String machines(BookingNexusServiceDemo.Booking booking) throws InterruptedException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         System.out.println("================= At machines call start============"+dtf.format(now));
-        BookingNexusServiceDemo.MachineRequest machineRequest = BookingNexusServiceDemo.MachineRequest.newBuilder().
-                setMachineId(String.valueOf(booking.getMachineId())).build();
-        return client.findMachine(machineRequest);
+//        BookingNexusServiceDemo.MachineRequest machineRequest = BookingNexusServiceDemo.MachineRequest.newBuilder().
+//                setMachineId(String.valueOf(booking.getMachineId())).build();
+
+        return "{\"machineId\":\"101\"}";
     }
 
     @Query("crops")
