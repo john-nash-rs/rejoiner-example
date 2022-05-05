@@ -42,7 +42,7 @@ public class Application {
 // Alternate Holder technique, prepare then add.
 // DefaultServlet should be named 'default'
         ServletHolder def = new ServletHolder("default", DefaultServlet.class);
-        def.setInitParameter("resourceBase","./http/");
+        def.setInitParameter("resourceBase","./src/main/resources");
         def.setInitParameter("dirAllowed","false");
         context.addServlet(def,"/");
 
